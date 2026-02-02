@@ -55,7 +55,7 @@ TEST(tracing_allocator) {
 }
 
 int main(void) {
-  TEST_SUITE("Allocator Tests");
+  TEST_SUITE("Allocator");
   RUN_TEST(raw_allocator_alloc);
   RUN_TEST(raw_allocator_realloc);
   RUN_TEST(tracing_allocator);

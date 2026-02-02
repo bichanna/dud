@@ -12,12 +12,14 @@ m_dep = cc.find_library('m', required: false)
 
 src = [
   'src/allocator.c',
+  'src/lexer.c',
 ]
 
 executable('dud', ['src/main.c', src], dependencies: m_dep, install: true)
 
 tests = [
   'test_allocator',
+  'test_lexer',
 ]
 
 foreach test_name : tests
