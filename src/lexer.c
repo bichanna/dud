@@ -117,8 +117,12 @@ static Token make_string_token(Lexer *lexer) {
   if (is_at_end(lexer))
     return make_error_token(lexer, "Unterminated string.");
 
+  lexer->start++;
+  Token token = make_token(lexer, TOKEN_STRING);
+  lexer->start--;
+
   advance(lexer);
-  return make_token(lexer, TOKEN_STRING);
+  return token;
 }
 
 static Token make_number_token(Lexer *lexer) {

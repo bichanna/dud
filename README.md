@@ -18,7 +18,7 @@ dud is basically C for people who are lazy but want a fraction of the power of C
 type User = struct {
   id: i32,
   name: String,
-  boss: User^,
+  boss: ^User,
 }
 
 fn main() {
@@ -26,7 +26,7 @@ fn main() {
   let me: User = User(1, "bichanna", null);
 
   // Heap allocation (Automatically reference counted)
-  let sister: User^ = heap User(2, "sister", null); // allocating on heap
+  let sister: ^User = heap User(2, "sister", null); // allocating on heap
 
   // Look Ma, no '->'!
   me.boss = sister;
