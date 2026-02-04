@@ -93,6 +93,34 @@ TEST(two_char_greater_equal) {
 TEST(two_char_less_equal) { return scan_single("<=", TOKEN_LESS_EQUAL, NULL); }
 
 /* --------------------------------------------------------------------------
+ * Arithmetic and Assignment Operators
+ * -------------------------------------------------------------------------- */
+
+TEST(arithmetic_plus) { return scan_single("+", TOKEN_PLUS, NULL); }
+
+TEST(arithmetic_plus_plus) { return scan_single("++", TOKEN_PLUS_PLUS, NULL); }
+
+TEST(arithmetic_plus_equal) { return scan_single("+=", TOKEN_PLUS_EQUAL, NULL); }
+
+TEST(arithmetic_minus) { return scan_single("-", TOKEN_MINUS, NULL); }
+
+TEST(arithmetic_minus_minus) { return scan_single("--", TOKEN_MINUS_MINUS, NULL); }
+
+TEST(arithmetic_minus_equal) { return scan_single("-=", TOKEN_MINUS_EQUAL, NULL); }
+
+TEST(arithmetic_mul) { return scan_single("*", TOKEN_MUL, NULL); }
+
+TEST(arithmetic_mul_equal) { return scan_single("*=", TOKEN_MUL_EQUAL, NULL); }
+
+TEST(arithmetic_div) { return scan_single("/", TOKEN_DIV, NULL); }
+
+TEST(arithmetic_div_equal) { return scan_single("/=", TOKEN_DIV_EQUAL, NULL); }
+
+TEST(arithmetic_rem) { return scan_single("%", TOKEN_REM, NULL); }
+
+TEST(arithmetic_rem_equal) { return scan_single("%=", TOKEN_REM_EQUAL, NULL); }
+
+/* --------------------------------------------------------------------------
  * Identifiers
  * -------------------------------------------------------------------------- */
 
@@ -528,6 +556,20 @@ int main(void) {
   RUN_TEST(two_char_equal_equal);
   RUN_TEST(two_char_greater_equal);
   RUN_TEST(two_char_less_equal);
+
+  TEST_SUITE("Lexer — Arithmetic and Assignment Operators");
+  RUN_TEST(arithmetic_plus);
+  RUN_TEST(arithmetic_plus_plus);
+  RUN_TEST(arithmetic_plus_equal);
+  RUN_TEST(arithmetic_minus);
+  RUN_TEST(arithmetic_minus_minus);
+  RUN_TEST(arithmetic_minus_equal);
+  RUN_TEST(arithmetic_mul);
+  RUN_TEST(arithmetic_mul_equal);
+  RUN_TEST(arithmetic_div);
+  RUN_TEST(arithmetic_div_equal);
+  RUN_TEST(arithmetic_rem);
+  RUN_TEST(arithmetic_rem_equal);
 
   TEST_SUITE("Lexer — Identifiers");
   RUN_TEST(identifier_simple);

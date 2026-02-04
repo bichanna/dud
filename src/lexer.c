@@ -306,6 +306,20 @@ Token scan_token(Lexer *lexer) {
                       match(lexer, '=') ? TOKEN_GREATER_EQUAL : TOKEN_GREATER);
   case '<':
     return make_token(lexer, match(lexer, '=') ? TOKEN_LESS_EQUAL : TOKEN_LESS);
+  case '+':
+    return make_token(lexer, match(lexer, '+')   ? TOKEN_PLUS_PLUS
+                             : match(lexer, '=') ? TOKEN_PLUS_EQUAL
+                                                 : TOKEN_PLUS);
+  case '-':
+    return make_token(lexer, match(lexer, '-')   ? TOKEN_MINUS_MINUS
+                             : match(lexer, '=') ? TOKEN_MINUS_EQUAL
+                                                 : TOKEN_MINUS);
+  case '*':
+    return make_token(lexer, match(lexer, '=') ? TOKEN_MUL_EQUAL : TOKEN_MUL);
+  case '/':
+    return make_token(lexer, match(lexer, '=') ? TOKEN_DIV_EQUAL : TOKEN_DIV);
+  case '%':
+    return make_token(lexer, match(lexer, '=') ? TOKEN_REM_EQUAL : TOKEN_REM);
   case '"':
     return make_string_token(lexer);
   }
@@ -355,6 +369,30 @@ const char *token_type_to_string(TokenType type) {
     return "TOKEN_LESS";
   case (TOKEN_LESS_EQUAL):
     return "TOKEN_LESS_EQUAL";
+  case (TOKEN_PLUS):
+    return "TOKEN_PLUS";
+  case (TOKEN_PLUS_PLUS):
+    return "TOKEN_PLUS_PLUS";
+  case (TOKEN_PLUS_EQUAL):
+    return "TOKEN_PLUS_EQUAL";
+  case (TOKEN_MINUS):
+    return "TOKEN_MINUS";
+  case (TOKEN_MINUS_MINUS):
+    return "TOKEN_MINUS_MINUS";
+  case (TOKEN_MINUS_EQUAL):
+    return "TOKEN_MINUS_EQUAL";
+  case (TOKEN_MUL):
+    return "TOKEN_MUL";
+  case (TOKEN_MUL_EQUAL):
+    return "TOKEN_MUL_EQUAL";
+  case (TOKEN_DIV):
+    return "TOKEN_DIV";
+  case (TOKEN_DIV_EQUAL):
+    return "TOKEN_DIV_EQUAL";
+  case (TOKEN_REM):
+    return "TOKEN_REM";
+  case (TOKEN_REM_EQUAL):
+    return "TOKEN_REM_EQUAL";
   case (TOKEN_IDENTIFIER):
     return "TOKEN_IDENTIFIER";
   case (TOKEN_STRING):
