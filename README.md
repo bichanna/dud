@@ -9,7 +9,7 @@ dud is basically C for people who are lazy but want a fraction of the power of C
 - Automatic memory management through reference counting that handle circular references
 - Built-in implementations of dynamic arrays, hash maps, and other useful things
 - Use functions, types, and other stuff from C without too much fuss
-- Generics and protocols!
+- Higher-level features like generics, closures, etc.
 - Zig-like modules, no more header files!
 
 ## Examples
