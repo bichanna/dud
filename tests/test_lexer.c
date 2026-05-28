@@ -100,13 +100,19 @@ TEST(arithmetic_plus) { return scan_single("+", TOKEN_PLUS, NULL); }
 
 TEST(arithmetic_plus_plus) { return scan_single("++", TOKEN_PLUS_PLUS, NULL); }
 
-TEST(arithmetic_plus_equal) { return scan_single("+=", TOKEN_PLUS_EQUAL, NULL); }
+TEST(arithmetic_plus_equal) {
+  return scan_single("+=", TOKEN_PLUS_EQUAL, NULL);
+}
 
 TEST(arithmetic_minus) { return scan_single("-", TOKEN_MINUS, NULL); }
 
-TEST(arithmetic_minus_minus) { return scan_single("--", TOKEN_MINUS_MINUS, NULL); }
+TEST(arithmetic_minus_minus) {
+  return scan_single("--", TOKEN_MINUS_MINUS, NULL);
+}
 
-TEST(arithmetic_minus_equal) { return scan_single("-=", TOKEN_MINUS_EQUAL, NULL); }
+TEST(arithmetic_minus_equal) {
+  return scan_single("-=", TOKEN_MINUS_EQUAL, NULL);
+}
 
 TEST(arithmetic_mul) { return scan_single("*", TOKEN_MUL, NULL); }
 
