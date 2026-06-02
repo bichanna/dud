@@ -13,6 +13,8 @@ m_dep = cc.find_library('m', required: false)
 src = [
   'src/allocator.c',
   'src/lexer.c',
+  'src/ast.c',
+  'src/parser.c',
 ]
 
 executable('dud', ['src/main.c', src], dependencies: m_dep, install: true)
@@ -20,6 +22,7 @@ executable('dud', ['src/main.c', src], dependencies: m_dep, install: true)
 tests = [
   'test_allocator',
   'test_lexer',
+  'test_parser',
 ]
 
 foreach test_name : tests
