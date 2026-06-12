@@ -19,6 +19,9 @@ src = [
 
 executable('dud', ['src/main.c', src], dependencies: m_dep, install: true)
 
+# nun tests in verbose mode simply by running: `meson test --setup=verbose`
+add_test_setup('verbose', env: {'TEST_VERBOSE': '1'}, is_default: false)
+
 tests = [
   'test_allocator',
   'test_lexer',

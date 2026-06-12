@@ -17,6 +17,9 @@ build: config
 test: build
     meson test -C {{BUILD_DIR}} -v
 
+test_verbose: build
+    meson test -C {{BUILD_DIR}} -v --setup=verbose
+
 install: build
     meson install -C {{BUILD_DIR}}
 
