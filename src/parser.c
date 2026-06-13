@@ -170,7 +170,7 @@ static int get_precedence(TokenType t) {
 }
 
 static Node *parse_declaration(Parser *p) {
-  bool is_pub = match(p, TOKEN_PLUS);
+  bool is_pub = match(p, TOKEN_PUB);
 
   if (match(p, TOKEN_FN))
     return parse_fn(p, is_pub);
@@ -224,9 +224,10 @@ static Node *parse_fn(Parser *p, bool is_pub) {
       consume(p, TOKEN_IDENTIFIER, "Expected parameter name.");
       param->line = p->previous.line;
       param->as.param.name = prev_text(p);
-
-      if (match(p, TOKEN_COLON))
-        param->as.param.type = parse_type(p);
+      consume(
+          p, TOKEN_COLON,
+          "Expected ':' after parameter name; parameters must have a type.");
+      param->as.param.type = parse_type(p);
 
       node_list_push(p->allocator, &node->as.fn.params, param);
     } while (match(p, TOKEN_COMMA));
@@ -641,7 +642,7 @@ static Node *parse_postfix(Parser *p) {
         return NULL;
 
       node->as.call.callee = expr;
-      if (!check(p, TOKEN_RIGHT_BRACE)) {
+      if (!check(p, TOKEN_RIGHT_PAREN)) {
         do {
           Node *arg = parse_expr(p);
           if (!arg)
@@ -709,12 +710,13 @@ static Node *parse_primary(Parser *p) {
     if (!node)
       return NULL;
     node->as.literal.text = prev_text(p);
+    return node;
   }
   if (match(p, TOKEN_TRUE) || match(p, TOKEN_FALSE)) {
     Node *node = make(p, NODE_BOOL_LIT);
     if (!node)
       return NULL;
-    node->as.boolean.val = (p->previous.type = TOKEN_TRUE);
+    node->as.boolean.val = (p->previous.type == TOKEN_TRUE);
     return node;
   }
   if (match(p, TOKEN_NULL)) {
